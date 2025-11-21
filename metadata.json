@@ -1,0 +1,7 @@
+{
+  "name": "Smart Attendance AI",
+  "description": "A smart attendance system using simulated IoT face recognition, dashboard analytics, and student management.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

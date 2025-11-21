@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Attendance AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --primary-red: #E50914;
+        --mouse-x: 50vw;
+        --mouse-y: 50vh;
+      }
+      body {
+        font-family: 'IBM Plex Mono', monospace;
+        background-color: #0a0a0a;
+        color: #f0f0f0;
+      }
+      
+      /* Interactive Cursor Glow */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(229, 9, 20, 0.06), transparent 80%);
+        z-index: -1; 
+        pointer-events: none;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1a1a1a; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--primary-red); 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #B20710; 
+      }
+
+      /* Utilities */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .text-glow {
+        text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+      }
+
+      /* Animations */
+      @keyframes scan {
+        0% { top: 0%; opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { top: 100%; opacity: 0; }
+      }
+      .animate-scan {
+        animation: scan 3s linear infinite;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+
+      @keyframes blink {
+        50% { opacity: 0; }
+      }
+      .blink {
+        animation: blink 1s step-end infinite;
+      }
+    </style>
+    <script>
+      window.addEventListener('mousemove', e => {
+        document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+        document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+      });
+    </script>
+    <script type="importmap">
+    {
+      "imports": {
+        "react/": "https://aistudiocdn.com/react@^19.2.0/",
+        "react": "https://aistudiocdn.com/react@^19.2.0",
+        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+        "recharts": "https://aistudiocdn.com/recharts@^3.4.1",
+        "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2"
+      }
+    }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="antialiased selection:bg-[#E50914] selection:text-white">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
